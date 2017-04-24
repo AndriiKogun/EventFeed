@@ -11,6 +11,6 @@
 @interface AKVideoTableViewCell : AKTableViewCell
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIView *videoView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoHeight;
 
 @end

@@ -49,9 +49,7 @@
         });
     });
     
-    
     self.ownerTextLabel.text = comment.text;
-    
 }
 
 @end

@@ -219,7 +219,7 @@ static NSString *eventFeedID = @"-57846937";
     
     if ([cell isKindOfClass:[AKVideoTableViewCell class]]) {
         AKVideoTableViewCell *videoCell = (AKVideoTableViewCell *)cell;
-        //videoCell.webView = nil;
+        videoCell.webView = nil;
         
     } else if ([cell isKindOfClass:[AKImageTableViewCell class]]) {
         AKImageTableViewCell *imageCell = (AKImageTableViewCell *)cell;
