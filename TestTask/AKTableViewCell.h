@@ -10,9 +10,10 @@
 
 @protocol AKPostDelegate <NSObject>
 
-- (void)commentButton:(UIButton *)sender;
-- (void)likeButton:(UIButton *)sender;
-- (void)sheetButton:(UIButton *)sender;
+- (void)imageHandler:(UIButton *)sender;
+- (void)commentHandler:(UIButton *)sender;
+- (void)likeHandler:(UIButton *)sender;
+- (void)sheetHandler:(UIButton *)sender;
 
 @end
 
@@ -37,9 +38,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *allCommentsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
-- (IBAction)actionSheetButton:(UIButton *)sender;
-- (IBAction)actionLikeButton:(UIButton *)sender;
-- (IBAction)actionCommentButton:(UIButton *)sender;
+- (IBAction)performSheet:(UIButton *)sender;
+- (IBAction)performLike:(UIButton *)sender;
+- (IBAction)performComment:(UIButton *)sender;
 
 
 @end

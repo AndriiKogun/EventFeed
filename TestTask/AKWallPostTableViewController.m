@@ -11,6 +11,7 @@
 
 #import "AKPost.h"
 
+#import "AKTableViewCell.h"
 #import "AKCommentTableViewCell.h"
 #import "AKImageTableViewCell.h"
 #import "AKVideoTableViewCell.h"
@@ -68,8 +69,36 @@ static NSString *eventFeedID = @"-57846937";
 
 #pragma mark - AKPostDelegate
 
-- (void)commentButton:(UIButton *)sender {
-    AKPostTableViewCell *postCell = (AKPostTableViewCell *)[sender superCell];
+#pragma mark - AKWallPostDelegate
+
+- (void)imageHandler:(UIButton *)sender {
+    AKPostCell *cell = (AKPostCell *)[sender superCell];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    AKPost *post = [self.tableArray objectAtIndex:indexPath.row - 1]; // - 1 row
+    
+    NSURL *postImage = nil;
+    
+    if (post.photo_1280) {
+        postImage = post.photo_1280;
+    } else if (post.photo_807) {
+        postImage = post.photo_807;
+    } else {
+        postImage = post.photo_604;
+    }
+    
+    if (postImage) {
+        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[postImage] animatedFromView:cell.postImage];
+        browser.view.tintColor = [UIColor whiteColor];
+        browser.displayToolbar = YES;
+        browser.displayActionButton = YES;
+        browser.displayCounterLabel = YES;
+        browser.usePopAnimation = YES;
+        [self presentViewController:browser animated:YES completion:nil];
+    }
+}
+
+- (void)commentHandler:(UIButton *)sender {
+    AKTableViewCell *postCell = (AKPostTableViewCell *)[sender superCell];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     
     AKPost *post = [self.posts objectAtIndex:indexPath.row];
@@ -78,8 +107,8 @@ static NSString *eventFeedID = @"-57846937";
     vc.groupID = eventFeedID;
     
 }
-- (void)likeButton:(UIButton *)sender {
-    AKPostTableViewCell *postCell = (AKPostTableViewCell *)[sender superCell];
+- (void)likeHandler:(UIButton *)sender {
+    AKTableViewCell *postCell = (AKPostTableViewCell *)[sender superCell];
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     
@@ -95,7 +124,7 @@ static NSString *eventFeedID = @"-57846937";
     }
 }
 
-- (void)sheetButton:(UIButton *)sender {
+- (void)sheetHandler:(UIButton *)sender {
     AKPostTableViewCell *postCell = (AKPostTableViewCell *)[sender superCell];
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];

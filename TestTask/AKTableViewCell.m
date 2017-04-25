@@ -90,16 +90,16 @@
 
 #pragma mark - AKPostDelegate
 
-- (IBAction)actionSheetButton:(UIButton *)sender {
-    [self.delegate sheetButton:sender];
+- (IBAction)performSheet:(UIButton *)sender {
+    [self.delegate sheetHandler:sender];
 }
 
-- (IBAction)actionLikeButton:(UIButton *)sender {
-    [self.delegate likeButton:sender];
+- (IBAction)performLike:(UIButton *)sender {
+    [self.delegate likeHandler:sender];
 }
 
-- (IBAction)actionCommentButton:(UIButton *)sender {
-    [self.delegate commentButton:sender];
+- (IBAction)performComment:(UIButton *)sender {
+    [self.delegate commentHandler:sender];
 }
 
 
